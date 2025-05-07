@@ -2,7 +2,7 @@
     <h1>Hallo</h1>
         <p>U bent ingelogd</p>
     <tr v-for="(user, index) in users" :key="index">
-         <td>{{ user.name }}</td>   
+         <td>{{ user.email }}</td>   
     </tr>
 </template>
 
