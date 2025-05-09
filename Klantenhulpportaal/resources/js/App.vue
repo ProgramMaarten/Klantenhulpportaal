@@ -5,10 +5,10 @@
       <RouterLink to="/">Home</RouterLink> 
     </nav>
     <nav id="nav2">
-        
+
         <RouterLink to="/login">Log in</RouterLink> |
         <RouterLink to="/create">Register</RouterLink> |
-        <button @click="logout">Logout</button>
+        <button @click="logOut()">Logout</button>
     </nav>
   </div>
     <main>
@@ -19,6 +19,12 @@
 <script setup>
 import {ref, reactive, computed} from 'vue';
 import { router } from './router';
+
+const logOut = async () => {
+    axios.defaults.withCredentials = true;
+    postRequest('/logout');
+};
+
 </script>
 
 <style scoped>

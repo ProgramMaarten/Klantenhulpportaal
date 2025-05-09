@@ -33,4 +33,9 @@ class LoginController extends Controller
     public function me(){
         return Auth::User();
     }
+
+    public function logout()
+    {
+        
+    }
 }
