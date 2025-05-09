@@ -1,10 +1,16 @@
 <template>
-    <h1>Sanctum ding</h1>
-    <nav>
-        <RouterLink to="/">Home</RouterLink>|
-        <RouterLink to="/login">Log in</RouterLink>|
-        <RouterLink to="/create">Register</RouterLink>
+  <h1 id="title">Klantenhulpportaal</h1>
+  <div class="header">          
+    <nav id="nav1">
+      <RouterLink to="/">Home</RouterLink> 
     </nav>
+    <nav id="nav2">
+        
+        <RouterLink to="/login">Log in</RouterLink> |
+        <RouterLink to="/create">Register</RouterLink> |
+        <button @click="logout">Logout</button>
+    </nav>
+  </div>
     <main>
         <RouterView />
     </main>
@@ -15,4 +21,32 @@ import {ref, reactive, computed} from 'vue';
 import { router } from './router';
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  z-index: 1;
+  
+}
+
+#nav1, #nav2 {
+  display: flex;
+  gap: 10px;
+  
+}
+
+#title {
+  font-size: 2em;
+  text-align: center;
+  z-index: 2;
+  }
+
+button {
+  cursor: pointer;
+}
+</style>

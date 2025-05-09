@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
 Route::post('/login',[LoginController::class, 'authenticate']);
 Route::get('/me',[LoginController::class, 'me'])->middleware('auth:sanctum');
 
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/users', [UserController::class, 'store']);
 Route::delete('/users/{user}', [UserController::class, 'destroy']);
 Route::put('/users/{user}', [UserController::class, 'update']);
