@@ -34,8 +34,19 @@ class LoginController extends Controller
         return Auth::User();
     }
 
-    public function logout()
-    {
-        
+    public function logout(Request $request){
+    Auth::logout();
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken(); 
+
+    return redirect('/');
+    }
+
+    public function check(){
+
+        // if [  , Auth::User()]
+
+        return Auth::check();
     }
 }

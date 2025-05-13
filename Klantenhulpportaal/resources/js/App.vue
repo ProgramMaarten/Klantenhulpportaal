@@ -18,6 +18,7 @@
 
 <script setup>
 import {ref, reactive, computed} from 'vue';
+import { getRequest, postRequest } from './services/http';
 import { router } from './router';
 
 const logOut = async () => {

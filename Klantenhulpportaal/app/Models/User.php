@@ -4,6 +4,7 @@ namespace App\Models;
 //API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model. use Laravel\Sanctum\HasApiTokens;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+Use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 

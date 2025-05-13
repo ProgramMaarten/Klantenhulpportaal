@@ -49,4 +49,8 @@ th,
 td {
     border: 1px solid black;
 }
+
+button {
+  cursor: pointer;
+}
 </style>
