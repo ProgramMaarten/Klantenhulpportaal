@@ -14,6 +14,13 @@ import {ref, computed} from 'vue';
 import { userStore } from '../store';
 const newCredentials = ref({name: '', email: '', password:'', is_admin: 0})
 
+// interface Credentials {
+//     name: string,
+//     email: string,
+//     password: string,
+//     is_admin: boolean
+// };
+
 const register = async (credentials)=>{ 
     console.log(credentials);
     try{

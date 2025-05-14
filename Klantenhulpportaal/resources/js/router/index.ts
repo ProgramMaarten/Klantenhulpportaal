@@ -1,5 +1,5 @@
 import { createMemoryHistory, createRouter } from "vue-router";
-import { routes } from "../domains/users/routes";
+import { routes } from "./routes";
 
 export const router =  createRouter({
     history: createMemoryHistory(),
