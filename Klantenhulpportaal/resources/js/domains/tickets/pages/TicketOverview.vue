@@ -3,7 +3,7 @@
     <div v-if="checkUser">
     <p>Tickets:</p>
     <tr v-for="(ticket, index) in tickets" :key="index">
-         <td>{{ ticket.id }}</td>   
+         <td>{{ ticket.title }}</td>   
     </tr>
     </div>
 </template>
@@ -16,6 +16,7 @@ import { getRequest, postRequest } from '../../../services/http';
 ticketStore.actions.getAll();
 const tickets = ticketStore.getters.all;
 
+console.log(tickets.value)
 
 const checkUser= ref('');
 const check = async () => {
