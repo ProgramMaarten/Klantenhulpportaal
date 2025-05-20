@@ -44,9 +44,6 @@ class LoginController extends Controller
     }
 
     public function check(){
-
-        // if [  , Auth::User()]
-
         return Auth::check();
     }
 }

@@ -5,9 +5,9 @@
         <input v-model="credentials.password" type="password" placeholder="password">
         <button @click.prevent="logIn()">Log in</button>
     </form>
-
+<!-- 
     <button @click="me">Check login</button>
-    <p>Hello {{currentUser}}</p>
+    <p>Hello {{currentUser.first_name}} {{ currentUser.last_name }}</p> -->
 </template>
 
 <script setup>
@@ -33,12 +33,18 @@ const me = async () => {
 
 
 const logIn = async ()=> {
+    try {
     axios.defaults.withCredentials = true;
     axios.defaults.withXSRFToken = true;
 
     await axios.get('/sanctum/csrf-cookie');
-    postRequest('/login', credentials.value);
-    
+    await postRequest('/login', credentials.value);
+
+    router.push('/');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+
 };
 
 </script>
