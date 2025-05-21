@@ -1,4 +1,4 @@
-import {Ref} from 'vue';
+import type {Ref} from 'vue';
 
 export type State<T extends {id: number}> = Ref<{[id: number]: Readonly<T>}>;
 

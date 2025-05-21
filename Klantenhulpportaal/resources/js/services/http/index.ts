@@ -1,5 +1,7 @@
-import axios, {AxiosRequestConfig} from 'axios';
 import type {RequestMiddleware, ResponseErrorMiddleware, ResponseMiddleware} from './types';
+import type {AxiosRequestConfig} from 'axios';
+
+import axios from 'axios';
 
 const baseURL = '/api';
 
@@ -7,7 +9,9 @@ const http = axios.create({
     baseURL,
     withCredentials: false,
     headers: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         Accept: 'application/json',
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'Content-Type': 'application/json',
     },
 });
@@ -18,18 +22,21 @@ const responseErrorMiddleware: ResponseErrorMiddleware[] = [];
 
 http.interceptors.request.use(request => {
     for (const middleware of requestMiddleware) middleware(request);
+
     return request;
 });
 
 http.interceptors.response.use(
     response => {
         for (const middleware of responseMiddleware) middleware(response);
+
         return response;
     },
     // eslint-disable-next-line promise/prefer-await-to-callbacks
     error => {
         if (!error.response) return Promise.reject(error);
         for (const middleware of responseErrorMiddleware) middleware(error);
+
         return Promise.reject(error);
     },
 );

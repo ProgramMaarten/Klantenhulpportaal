@@ -1,5 +1,7 @@
-import {New, State, Updatable} from './types';
+import type {New, State, Updatable} from './types';
+
 import {computed, ref} from 'vue';
+
 import {deleteRequest, getRequest, postRequest, putRequest} from '../http';
 
 /**
@@ -8,6 +10,7 @@ import {deleteRequest, getRequest, postRequest, putRequest} from '../http';
 // eslint-disable-next-line max-lines-per-function
 export const storeModuleFactory = <T extends {id: number}>(moduleName: string) => {
     const state: State<T> = ref({});
+
     const getters = {
         /** Get all items from the store */
         all: computed(() => Object.values(state.value)),
@@ -16,6 +19,7 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
          */
         byId: (id: number) => computed(() => state.value[id]),
     };
+
     const setters = {
         /**
          * Set items in the state.
@@ -36,6 +40,7 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
             delete state.value[id];
         },
     };
+
     const actions = {
         getAll: async () => {
             const {data} = await getRequest(moduleName);
@@ -62,7 +67,9 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
             setters.deleteById(id);
         },
     };
+
     return {
+        state,
         getters,
         setters,
         actions,

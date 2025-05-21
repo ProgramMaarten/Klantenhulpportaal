@@ -16,7 +16,7 @@ import { getRequest, postRequest } from '../../../services/http';
 
 ticketStore.actions.getAll();
 const tickets = ticketStore.getters.all;
-
+console.log(tickets)
 const checkUser= ref('');
 const check = async () => {
     const {data} = await getRequest('/check')
