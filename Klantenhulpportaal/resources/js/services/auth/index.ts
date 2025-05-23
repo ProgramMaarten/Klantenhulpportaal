@@ -9,13 +9,13 @@ import type {
 import type {Component} from 'vue';
 import type {NavigationGuard} from 'vue-router';
 
-import {USER_DOMAIN_NAME} from 'domains/user';
+import { USER_DOMAIN_NAME } from '../../domains/users';
 import {computed, ref} from 'vue';
 
-import {getRequest, postRequest, registerResponseErrorMiddleware} from 'services/http';
-import {addRoutes, goToRoute, registerBeforeRouteMiddleware} from 'services/router';
-import {clearStorage} from 'services/storage';
-import {successToast} from 'services/toast';
+import {getRequest, postRequest, registerResponseErrorMiddleware} from '../http';
+import {addRoutes, goToRoute, registerBeforeRouteMiddleware} from '../router';
+import {clearStorage} from '../storage';
+import {successToast} from '../toast';
 
 export const LOGIN_ROUTE_NAME = 'Login';
 export const FORGOT_PASSWORD_ROUTE_NAME = 'ForgotPassword';

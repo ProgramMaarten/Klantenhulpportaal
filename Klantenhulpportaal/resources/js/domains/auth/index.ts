@@ -1,9 +1,9 @@
 import {Credentials} from './types';
-import {PROJECT_DOMAIN_NAME} from 'domains/projects';
-import {User} from 'domains/users/types';
+import { TICKET_DOMAIN_NAME } from '../tickets';
+import {User} from './../users/types';
 import {computed, ref} from 'vue';
-import {getRequest, postRequest} from 'services/http';
-import {goToOverviewPage, goToRoute, registerBeforeRouteMiddleware} from 'services/router';
+import {getRequest, postRequest} from './../../services/http';
+import {goToOverviewPage, goToRoute, registerBeforeRouteMiddleware} from './../../services/router';
 import Login from './pages/Login.vue';
 import Register from './pages/Register.vue';
 import RequestResetPassword from './pages/RequestResetPassword.vue';

@@ -1,71 +1,47 @@
 <template>
-    <AuthContainer>
-        <h1>Manos</h1>
-        <form @submit.prevent="submit">
-            <div class="mb-2">
-                <label for="email">Voornaam:</label>
-                <input v-model="userToRegister.firstName" type="text" class="form-control" name="firstName" disabled />
-            </div>
-            <div class="mb-2">
-                <label for="email">Achternaam:</label>
-                <input v-model="userToRegister.lastName" type="text" class="form-control" name="lastName" disabled />
-            </div>
-            <div class="mb-2">
-                <label for="email">Email:</label>
-                <input v-model="userToRegister.email" type="text" class="form-control" name="email" disabled />
-            </div>
-            <div class="mb-2">
-                <label for="email">Wachtwoord:</label>
-                <input v-model="newCredentials.password" type="password" class="form-control" name="password" />
-            </div>
-            <div class="mb-2">
-                <label for="password">Herhaal wachtwoord:</label>
-                <input
-                    v-model="newCredentials.repeatedPassword"
-                    type="password"
-                    class="form-control"
-                    name="repeatedPassword"
-                />
-            </div>
-            <div class="pt-3">
-                <button>Registreren</button>
-            </div>
-        </form>
-    </AuthContainer>
+    <h1>Hallo</h1>
+    <form>
+        <input v-model="newCredentials.name" type="text" placeholder="Username">
+        <input v-model="newCredentials.email" type="email" placeholder="test123@example.com">
+        <input v-model="newCredentials.password" type="password" placeholder="password">
+        <button @click.prevent="register(newCredentials)">Register</button>
+    </form>
+    
 </template>
 
-<script setup lang="ts">
-import {PROJECT_DOMAIN_NAME} from 'domains/projects';
-import {User} from 'domains/users/types';
-import {getCurrentRouteToken, goToOverviewPage} from 'services/router';
-import {getRequest, postRequest} from 'services/http';
-import {login} from '..';
-import {ref} from 'vue';
-import AuthContainer from '../components/AuthContainer.vue';
+<script setup>
+import {ref, computed} from 'vue';
+import { userStore } from '../../users';
+const newCredentials = ref({name: '', email: '', password:'', is_admin: 0})
 
-const newCredentials = ref({password: '', repeatedPassword: ''});
+// interface Credentials {
+//     name: string,
+//     email: string,
+//     password: string,
+//     is_admin: boolean
+// };
 
-const userToRegister = ref<User>({
-    id: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    inviteToken: '',
-});
-
-const getUserToRegister = async (token: string) => {
-    const {data} = await getRequest(`get-user-to-register/${token}`);
-    if (!data) return;
-    userToRegister.value = data;
+const register = async (credentials)=>{ 
+    console.log(credentials);
+    try{
+    await userStore.actions.create(credentials);
+    console.log('Registration successful');
+} catch (error) {
+        if (error.response) {
+            console.error('Response Error:', error.response.data);
+        } else if (error.request) {
+            console.error('Request Error:', error.request);
+        } else {
+            console.error('General Error:', error.message);
+        }
+    }
 };
-
-const submit = async () => {
-    await postRequest(`register/${userToRegister.value.inviteToken}`, newCredentials.value);
-    await login({email: userToRegister.value.email, password: newCredentials.value.password});
-    goToOverviewPage(PROJECT_DOMAIN_NAME);
-};
-
-getUserToRegister(getCurrentRouteToken());
 </script>
 
-<style></style>
+<style scoped>
+table,
+th,
+td {
+    border: 1px solid black;
+}
+</style>

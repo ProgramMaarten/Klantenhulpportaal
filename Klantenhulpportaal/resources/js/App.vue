@@ -6,8 +6,8 @@
     </nav>
     <nav id="nav2">
 
-        <RouterLink to="/login">Log in</RouterLink> |
-        <RouterLink to="/create">Register</RouterLink> |
+        <RouterLink to="/Login">Log in</RouterLink> |
+        <RouterLink to="/Register">Register</RouterLink> |
         <button @click="logOut()">Logout</button>
     </nav>
   </div>
@@ -18,6 +18,7 @@
 
 <script setup>
 import {ref, reactive, computed} from 'vue';
+import axios from 'axios';
 import { getRequest, postRequest } from './services/http';
 import { router } from './router';
 

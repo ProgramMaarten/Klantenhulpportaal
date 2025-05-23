@@ -1,50 +1,62 @@
 <template>
-    <AuthContainer>
-        <h1>Manos</h1>
-        <form @submit.prevent="submit">
-            <div class="mb-2">
-                <input
-                    v-model="credentials.email"
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    placeholder="Email-adres"
-                />
-            </div>
-            <div class="mb-2">
-                <input
-                    v-model="credentials.password"
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    placeholder="Wachtwoord"
-                />
-            </div>
-            <div class="mb-3">
-                <input id="remember" type="checkbox" name="remember" />
-                <label for="remember">Ingelogd blijven</label>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-primary">Login</button>
-            </div>
-            <router-link :to="{name: 'forgotPassword'}">Wachtwoord vergeten</router-link>
-        </form>
-    </AuthContainer>
+    <h1>Hallo</h1>
+    <form>
+        <input v-model="credentials.email" type="email" placeholder="test@example.com">
+        <input v-model="credentials.password" type="password" placeholder="password">
+        <button @click.prevent="logIn()">Log in</button>
+    </form>
+<!-- 
+    <button @click="me">Check login</button>
+    <p>Hello {{currentUser.first_name}} {{ currentUser.last_name }}</p> -->
 </template>
 
 <script setup>
-import {PROJECT_DOMAIN_NAME} from 'domains/projects';
-import {goToOverviewPage} from 'services/router';
-import {login} from '../';
-import {ref} from 'vue';
-import AuthContainer from '../components/AuthContainer.vue';
+import axios from 'axios';
+import {ref, computed} from 'vue';
+import { userStore } from '../../users';
+import { getRequest, postRequest } from '../../../services/http';
+import { router } from '../../../router';
+// axios.get('/sanctum/csrf-cookie').then(response => {
+//     // Login...
+// });
+userStore.actions.getAll();
+const users = userStore.getters.all;
 
-const credentials = ref({});
-
-const submit = async () => {
-    await login(credentials.value);
-    goToOverviewPage(PROJECT_DOMAIN_NAME);
+const credentials = ref({email: '', password:''})
+const currentUser= ref('');
+const me = async () => {
+    const {data} = await getRequest('/me')
+    currentUser.value = data
 };
+
+
+
+
+const logIn = async ()=> {
+    try {
+    axios.defaults.withCredentials = true;
+    axios.defaults.withXSRFToken = true;
+
+    await axios.get('/sanctum/csrf-cookie');
+    await postRequest('/login', credentials.value);
+
+    router.push('/');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+
+};
+
 </script>
 
-<style></style>
+<style scoped>
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+button {
+  cursor: pointer;
+}
+</style>

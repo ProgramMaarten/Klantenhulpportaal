@@ -11,7 +11,7 @@
 
 <script setup>
 import {ref, computed} from 'vue';
-import { ticketStore } from '../store';
+import { ticketStore } from '../index';
 import { getRequest, postRequest } from '../../../services/http';
 
 ticketStore.actions.getAll();

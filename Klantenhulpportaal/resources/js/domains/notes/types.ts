@@ -1,4 +1,7 @@
-export interface Credentials {
-    email: string;
-    password: string;
+export interface Reaction {
+    id: number;
+    user_id: number;
+    ticket_id: number;
+    title: string;
+    content: string;
 }

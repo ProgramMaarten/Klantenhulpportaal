@@ -1,7 +1,8 @@
 import type {Meta} from '../types';
 import type {RouteComponent} from 'vue-router';
 
-import {getPluralTranslation, getSingularTranslation} from 'services/translation';
+// import {getPluralTranslation, getSingularTranslation} from 'services/translation';
+import { getPluralTranslation, getSingularTranslation } from '../../translation';
 
 export const CREATE_PAGE_NAME = '.create';
 export const EDIT_PAGE_NAME = '.edit';

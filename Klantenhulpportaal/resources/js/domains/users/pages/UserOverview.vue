@@ -10,7 +10,7 @@
 
 <script setup>
 import {ref, computed} from 'vue';
-import { userStore } from '../store';
+import { userStore } from '..';
 import { getRequest, postRequest } from '../../../services/http';
 
 userStore.actions.getAll();

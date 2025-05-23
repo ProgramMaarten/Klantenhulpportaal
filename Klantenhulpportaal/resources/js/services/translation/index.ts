@@ -1,6 +1,6 @@
 import type {Translation} from './types';
 
-import {MissingTranslationError} from 'errors/MissingTranslation';
+import { MissingTranslationError } from '../../errors/MissingTranslation';
 
 
 const PLURAL = 'plural';
