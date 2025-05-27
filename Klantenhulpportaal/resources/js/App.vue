@@ -2,11 +2,11 @@
   <h1 id="title">Klantenhulpportaal</h1>
   <div class="header">          
     <nav id="nav1">
-      <RouterLink to="/">Home</RouterLink> 
+      <RouterLink to="/tickets">Home</RouterLink> 
     </nav>
     <nav id="nav2">
 
-        <RouterLink to="/Login">Log in</RouterLink> |
+        <RouterLink to="/">Log in</RouterLink> |
         <RouterLink to="/Register">Register</RouterLink> |
         <button @click="logOut()">Logout</button>
     </nav>

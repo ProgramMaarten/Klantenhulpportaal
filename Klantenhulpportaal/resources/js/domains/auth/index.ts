@@ -71,7 +71,7 @@ registerBeforeRouteMiddleware(({meta}) => {
         return true;
     }
     if (isLoggedIn.value && !meta?.canSeeWhenLoggedIn) {
-        goToOverviewPage(PROJECT_DOMAIN_NAME);
+        goToOverviewPage(TICKET_DOMAIN_NAME);
         return true;
     }
     return false;
