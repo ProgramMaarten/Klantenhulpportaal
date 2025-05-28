@@ -20,16 +20,17 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
+        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             // TODO :: resource voor maken
-            return Auth::User();
+            return Auth::user();
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return response()->json([
+            'message' => 'The provided credentials are incorrect.',
+        ], 401);
     }
 
     public function me(){

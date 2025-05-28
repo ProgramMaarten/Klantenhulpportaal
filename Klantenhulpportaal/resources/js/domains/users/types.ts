@@ -1,7 +1,7 @@
-export interface User {
+export interface UserResource {
     id: number;
     firstName: string;
     lastName: string;
     email: string;
-    is_admin: boolean;
+    isAdmin: boolean;
 }

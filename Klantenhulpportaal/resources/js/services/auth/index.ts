@@ -70,20 +70,13 @@ registerResponseErrorMiddleware(responseErrorMiddleware);
 
 // eslint-disable-next-line complexity
 const beforeMiddleware: NavigationGuard = ({meta, fullPath}) => {
-    console.log(isLoggedIn.value, meta.auth);
-    
     if (!isLoggedIn.value && meta.auth) {
         goToLoginPage(fullPath);
 
         return true;
     }
 
-    console.log(meta);
-    
-
-    if (isLoggedIn.value && !meta.canSeeWhenLoggedIn) {
-        console.log('asd');
-        
+    if (isLoggedIn.value && meta.canSeeWhenLoggedIn) {
         goToDefaultLoggedInPage();
 
         return true;

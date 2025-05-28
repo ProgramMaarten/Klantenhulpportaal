@@ -11,14 +11,10 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-import {ref, computed} from 'vue';
-import { userStore } from '../../users';
-import { getRequest, postRequest } from '../../../services/http';
+import {ref} from 'vue';
 import { login } from '../../../services/auth';
-import { goToRoute } from '../../../services/router';
 
-const credentials = ref({email: '', password:''})
+const credentials = ref({email: 'test@example.com', password:'password'})
 
 
 

@@ -1,6 +1,6 @@
 import type {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
-import type {UserResource} from 'domains/user/types';
 import type {LocationQueryValue} from 'vue-router';
+import { UserResource } from '../../domains/users/types';
 
 export type RequestMiddleware = (request: AxiosRequestConfig) => void;
 export type ResponseMiddleware = (response: AxiosResponse) => void;
@@ -13,7 +13,6 @@ export type InvitedUser = Pick<Required<RegisterData>, 'id' | 'firstName' | 'las
 export interface LoginCredentials {
     email: string;
     password: string;
-    rememberMe: boolean;
 }
 
 export interface ResetPasswordData {

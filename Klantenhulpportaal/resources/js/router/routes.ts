@@ -1,11 +1,10 @@
-import {authRoutes} from '../domains/auth';
 import {categoryRoutes} from '../domains/categories';
 import {noteRoutes} from '../domains/notes';
 import {reactionRoutes} from '../domains/reactions';
 import {ticketRoutes} from '../domains/tickets';
 import {userRoutes} from '../domains/users';
 
-export const routes = [...authRoutes, ...categoryRoutes, ...noteRoutes, ...reactionRoutes, ...ticketRoutes, ...userRoutes ];
+export const routes = [...categoryRoutes, ...noteRoutes, ...reactionRoutes, ...ticketRoutes, ...userRoutes ];
 
 
 

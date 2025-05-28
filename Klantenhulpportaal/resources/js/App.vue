@@ -6,7 +6,7 @@
     </nav>
     <nav id="nav2">
 
-        <RouterLink to="/">Log in</RouterLink> |
+        <!-- <RouterLink to="/">Log in</RouterLink> | -->
         <!-- <RouterLink :to="/Register">Register</RouterLink> | -->
         <button @click="logOut">Logout</button>
     </nav>
