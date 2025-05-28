@@ -12,7 +12,6 @@
 <script setup>
 import {ref, computed} from 'vue';
 import { userStore } from '../../users';
-import { router } from '../../../router';
 
 const newCredentials = ref({name: '', email: '', password:'', is_admin: 0})
 

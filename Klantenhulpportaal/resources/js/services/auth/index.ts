@@ -28,7 +28,7 @@ const apiLoggedInCheckRoute = '/me';
 const apiSendResetPasswordEmailRoute = '/send-reset-password-email';
 const apiResetpasswordRoute = '/reset-password';
 
-const goToDefaultLoggedInPage = () => goToRoute('dashboard');
+const goToDefaultLoggedInPage = () => goToRoute('tickets.overview');
 
 export const goToLoginPage = (from?: string) => goToRoute(LOGIN_ROUTE_NAME, undefined, {from});
 
@@ -70,13 +70,20 @@ registerResponseErrorMiddleware(responseErrorMiddleware);
 
 // eslint-disable-next-line complexity
 const beforeMiddleware: NavigationGuard = ({meta, fullPath}) => {
+    console.log(isLoggedIn.value, meta.auth);
+    
     if (!isLoggedIn.value && meta.auth) {
         goToLoginPage(fullPath);
 
         return true;
     }
 
+    console.log(meta);
+    
+
     if (isLoggedIn.value && !meta.canSeeWhenLoggedIn) {
+        console.log('asd');
+        
         goToDefaultLoggedInPage();
 
         return true;
@@ -98,8 +105,8 @@ const logoutOfApp = () => {
 
 export const login = async (credentials: LoginCredentials) => {
     const response = await postRequest(apiLoginRoute, credentials);
-
-    setLoggedInAndUser(response.data.user);
+    
+    setLoggedInAndUser(response.data);
     goToDefaultLoggedInPage();
 
     return response;
@@ -108,7 +115,7 @@ export const login = async (credentials: LoginCredentials) => {
 export const guestLogin = async () => {
     const response = await getRequest('guestLogin');
 
-    setLoggedInAndUser(response.data.user);
+    setLoggedInAndUser(response.data);
     goToDefaultLoggedInPage();
 
     return response;
@@ -125,7 +132,7 @@ export const logout = async () => {
 export const checkIfLoggedIn = async () => {
     const {data} = await getRequest(apiLoggedInCheckRoute);
 
-    setLoggedInAndUser(data.user);
+    setLoggedInAndUser(data);
 };
 
 export const sendResetPasswordEmail = async (email: string) => {

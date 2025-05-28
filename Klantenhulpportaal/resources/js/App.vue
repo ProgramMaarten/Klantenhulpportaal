@@ -2,13 +2,13 @@
   <h1 id="title">Klantenhulpportaal</h1>
   <div class="header">          
     <nav id="nav1">
-      <RouterLink to="/tickets">Home</RouterLink> 
+      <RouterLink :to="{name: 'tickets.overview'}">Home</RouterLink> 
     </nav>
     <nav id="nav2">
 
         <RouterLink to="/">Log in</RouterLink> |
-        <RouterLink to="/Register">Register</RouterLink> |
-        <button @click="logOut()">Logout</button>
+        <!-- <RouterLink :to="/Register">Register</RouterLink> | -->
+        <button @click="logOut">Logout</button>
     </nav>
   </div>
     <main>
@@ -17,14 +17,13 @@
 </template>
 
 <script setup>
-import {ref, reactive, computed} from 'vue';
 import axios from 'axios';
-import { getRequest, postRequest } from './services/http';
-import { router } from './router';
+import { logout } from './services/auth';
 
 const logOut = async () => {
     axios.defaults.withCredentials = true;
-    postRequest('/logout');
+    logout();
+    // postRequest('/logout');
 };
 
 </script>

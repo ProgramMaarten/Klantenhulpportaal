@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\AuthResource;
 
 class LoginController extends Controller
 {
@@ -22,6 +23,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            // TODO :: resource voor maken
             return Auth::User();
         }
 
@@ -31,7 +33,9 @@ class LoginController extends Controller
     }
 
     public function me(){
-        return Auth::User();
+        $currentUser = Auth::User();
+
+        return new AuthResource($currentUser);
     }
 
     public function logout(Request $request){

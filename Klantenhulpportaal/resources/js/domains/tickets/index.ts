@@ -14,3 +14,4 @@ setTranslation(TICKET_DOMAIN_NAME, {
 export const ticketStore = storeModuleFactory<Ticket>(TICKET_DOMAIN_NAME);
 
 export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage)];
+

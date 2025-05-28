@@ -9,7 +9,7 @@ export const EDIT_PAGE_NAME = '.edit';
 export const OVERVIEW_PAGE_NAME = '.overview';
 export const SHOW_PAGE_NAME = '.show';
 
-const defaultMeta = {auth: true, canSeeWhenLoggedIn: true};
+const defaultMeta = {auth: true, canSeeWhenLoggedIn: false};
 
 export const createShowRoute = (module: string, component: RouteComponent, meta?: Meta) => ({
     path: `/${getSingularTranslation(module)}/:id`,
