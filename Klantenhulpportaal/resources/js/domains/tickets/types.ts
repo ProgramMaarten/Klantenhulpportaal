@@ -9,4 +9,6 @@ export interface Ticket {
     title: string;
     content: string;
     status: StatusValue;
+    created_at: Date;
+    updated_at: Date;
 }
