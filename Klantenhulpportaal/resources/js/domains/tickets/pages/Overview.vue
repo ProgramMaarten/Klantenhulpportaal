@@ -18,20 +18,35 @@
          <td>{{ ticket.category_id }}</td>
          <td>{{ ticket.status }}</td>   
          <td>{{ ticket.user_id }}</td>   
-         <td>{{ Date(ticket.created_at) }}</td>
-         <td>{{ ticket.updated_at }}</td>   
-         <td>{{ ticket.admin_id }}</td>   
-
-
+         <td>{{ formatDate(ticket.created_at) }}</td>
+         <td>{{ formatDate(ticket.updated_at) }}</td>   
+         <td>{{ ticket.admin_id }}</td> 
     </tr>
 </template>
 
 <script setup>
-import { ticketStore } from '../index';
+import { ref, reactive, computed } from 'vue';
+import { ticketStore, formatDate } from '../index';
+import { isAdmin, getLoggedInUser } from '../../../services/auth';
 
+const userId =getLoggedInUser;
 ticketStore.actions.getAll();
-const tickets = ticketStore.getters.all;
+const tickets = computed(() =>{
+  if (isAdmin.value){
+    return ticketStore.getters.all.value
+  } else {
+    return ticketStore.getters.all.value.filter(ticket => ticket.user_id === userId);
+  }
+});
+console.log(tickets)
+const id = 10;
+ticketStore.actions.getById(id);
 
+const ticketsById = computed(() => [ticketStore.getters.byId(id).value].filter(Boolean));
+
+const ticketsByUserId = computed(() => 
+  ticketStore.getters.all.value.filter(ticket => ticket.user_id === userId)
+);
 </script>
 
 <style scoped>
