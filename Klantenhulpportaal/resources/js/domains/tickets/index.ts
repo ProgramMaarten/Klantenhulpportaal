@@ -1,9 +1,9 @@
 import {Ticket} from './types';
-import {createOverviewRoute} from '../../services/router/factory';
+import {createCreateRoute, createOverviewRoute} from '../../services/router/factory';
 import {setTranslation} from '../../services/translation';
 import { storeModuleFactory } from '../../services/store';
 import OverviewPage from './pages/Overview.vue';
-
+import CreatePage from './pages/Create.vue';
 export const TICKET_DOMAIN_NAME = 'tickets';
 
 setTranslation(TICKET_DOMAIN_NAME, {
@@ -13,7 +13,7 @@ setTranslation(TICKET_DOMAIN_NAME, {
 
 export const ticketStore = storeModuleFactory<Ticket>(TICKET_DOMAIN_NAME);
 
-export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage)];
+export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage),createCreateRoute(TICKET_DOMAIN_NAME, CreatePage)];
 
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
@@ -30,7 +30,6 @@ export function formatDate(dateString: string) {
   return `${day} ${month} ${year} ${hours}:${minutes}:${seconds}`;
 }
 
-export function ticketsByUserID(userID:number){
-  
-
-}
+export function getTicketsByUserId(userId:number){ 
+  return ticketStore.getters.all.value.filter(ticket => ticket.user_id === userId)
+};

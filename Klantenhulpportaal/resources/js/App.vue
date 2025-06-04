@@ -3,6 +3,8 @@
   <div class="header">          
     <nav id="nav1">
       <RouterLink :to="{name: 'tickets.overview'}">Home</RouterLink> 
+      <RouterLink :to="{name: 'tickets.create'}">Nieuwe Ticket</RouterLink> 
+
     </nav>
     <nav id="nav2">
 

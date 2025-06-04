@@ -11,7 +11,7 @@ class TicketController extends Controller
     //
     public function index()
     {
-        $tickets = Ticket::orderBy('created_at', 'desc')->get();
+        $tickets = Ticket::all();
         return TicketResource::collection($tickets);
     }
 
@@ -21,7 +21,7 @@ class TicketController extends Controller
 
         Ticket::create($validatedData);
 
-        $tickets = Ticket::orderBy('created_at', 'desc')->get();
+        $tickets = Ticket::all();
 
         return TicketResource::collection($tickets);
     }
@@ -36,7 +36,7 @@ class TicketController extends Controller
 
         $ticket->update($validatedData); // update the ticket.
 
-        $tickets = Ticket::orderBy('created_at', 'desc')->get();
+        $tickets = Ticket::all();
         return TicketResource::collection($tickets);
     }
 
