@@ -1,9 +1,10 @@
 import {Ticket} from './types';
-import {createCreateRoute, createOverviewRoute} from '../../services/router/factory';
+import {createCreateRoute, createOverviewRoute, createShowRoute} from '../../services/router/factory';
 import {setTranslation} from '../../services/translation';
 import { storeModuleFactory } from '../../services/store';
 import OverviewPage from './pages/Overview.vue';
 import CreatePage from './pages/Create.vue';
+import ShowPage from './pages/Show.vue';
 export const TICKET_DOMAIN_NAME = 'tickets';
 
 setTranslation(TICKET_DOMAIN_NAME, {
@@ -13,7 +14,7 @@ setTranslation(TICKET_DOMAIN_NAME, {
 
 export const ticketStore = storeModuleFactory<Ticket>(TICKET_DOMAIN_NAME);
 
-export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage), createCreateRoute(TICKET_DOMAIN_NAME, CreatePage)];
+export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage), createCreateRoute(TICKET_DOMAIN_NAME, CreatePage), createShowRoute(TICKET_DOMAIN_NAME, ShowPage)];
 
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
