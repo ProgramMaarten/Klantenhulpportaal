@@ -11,7 +11,7 @@ class TicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,12 @@ class TicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'category_id' =>  'required|integer',
         'title' =>  'required|string|max:255',
-        'content' =>  'required|string|max:1023',
+        'content' =>  'nullable|string|max:1023',
+        'category_id' =>  'required|integer',
+        'status' => 'required|string',
+        'user_id' => 'required|integer',
+        'admin_id' => 'nullable|integer',
         ];
     }
 }

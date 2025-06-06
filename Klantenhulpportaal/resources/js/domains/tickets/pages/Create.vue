@@ -12,18 +12,18 @@
       </option>
     </select> 
     
-    <button @click="emitTicket">Ticket opslaan</button>
+    <button @click.prevent="postTicket(newTicket)">Ticket opslaan</button>
 
         <p>{{ newTicket }}</p>
 
 </form>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, reactive, computed } from 'vue';
 import { ticketStore} from '../index';
 import { isAdmin, getLoggedInUser } from '../../../services/auth';
-import { Ticket } from '../types';
+
 import { categoryStore } from '../../categories';
 
 categoryStore.actions.getAll();
@@ -32,8 +32,16 @@ const categories= categoryStore.getters.all;
 
 const userId = getLoggedInUser().id;
 
-const newTicket = ref({id: '', title: '', content: '', category_id: '', status:'In afwachting', user_id: userId});
+const newTicket = ref({title: '', content: '', category_id: '', status:'In afwachting', user_id: userId});
 
+const postTicket = async ticket=> {
+    try {
+    await ticketStore.actions.create(ticket);
+    console.log('Ticket created successfully!');
+    } catch (error) {
+    console.error('Error creating ticket:', error.response || error);
+    }
+};
 </script>
 
 <style scoped>

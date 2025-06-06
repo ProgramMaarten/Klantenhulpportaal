@@ -18,7 +18,7 @@ class TicketController extends Controller
     public function store(TicketRequest $request)
     {
         $validatedData = $request->validated();
-
+        
         Ticket::create($validatedData);
 
         $tickets = Ticket::all();

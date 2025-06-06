@@ -21,9 +21,9 @@
 <script setup>
 import axios from 'axios';
 import { logout } from './services/auth';
-
+axios.defaults.withCredentials = true;
 const logOut = async () => {
-    axios.defaults.withCredentials = true;
+    
     logout();
     // postRequest('/logout');
 };

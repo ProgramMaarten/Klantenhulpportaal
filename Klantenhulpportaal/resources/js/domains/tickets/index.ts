@@ -13,7 +13,7 @@ setTranslation(TICKET_DOMAIN_NAME, {
 
 export const ticketStore = storeModuleFactory<Ticket>(TICKET_DOMAIN_NAME);
 
-export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage),createCreateRoute(TICKET_DOMAIN_NAME, CreatePage)];
+export const ticketRoutes = [createOverviewRoute(TICKET_DOMAIN_NAME, OverviewPage), createCreateRoute(TICKET_DOMAIN_NAME, CreatePage)];
 
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
