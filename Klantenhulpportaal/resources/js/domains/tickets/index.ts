@@ -34,3 +34,5 @@ export function formatDate(dateString: string) {
 export function getTicketsByUserId(userId:number){ 
   return ticketStore.getters.all.value.filter(ticket => ticket.user_id === userId)
 };
+
+export const statusArray = ['In afwachting', 'In behandeling' , 'Afgehandeld'];

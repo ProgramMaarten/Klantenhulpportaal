@@ -25,6 +25,7 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 Route::put('/categories/{category}', [CategoryController::class, 'update']);
 
 Route::get('/tickets', [TicketController::class, 'index']);
+Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
 Route::post('/tickets', [TicketController::class, 'store']);
 Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy']);
 Route::put('/tickets/{ticket}', [TicketController::class, 'update']);
