@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Http\Resources\TicketResource;
-use App\Http\Requests\TicketRequest;
+use App\Http\Requests\UpdateTicketRequest;
+use App\Http\Requests\CreateTicketRequest;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -15,7 +16,7 @@ class TicketController extends Controller
         return TicketResource::collection($tickets);
     }
 
-    public function store(TicketRequest $request)
+    public function store(CreateTicketRequest $request)
     {
         $validatedData = $request->validated();
         
@@ -30,7 +31,7 @@ class TicketController extends Controller
         $ticket->delete();
     }
 
-    public function update(TicketRequest $request, Ticket $ticket)
+    public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
         $validatedData = $request->validated(); // Validate the incoming data.
 
