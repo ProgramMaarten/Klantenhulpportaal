@@ -1,8 +1,12 @@
 <template>
     <div v-if="isAdmin">
         <label>Toegewijzen aan:</label>
-        <input v-model="editableTicket.admin_id" placeholder="admin_id" type="number" />
-        <select v-model="editableTicket.status">
+    <select v-model="editableTicket.admin_id">
+      <option v-for="admin in admins" :value="admin.id">
+          {{ admin.first_name }}
+      </option>
+    </select>
+    <select v-model="editableTicket.status">
       <option v-for="status in statusArray">
           {{ status }}
       </option>
@@ -24,11 +28,16 @@ import { statusArray, ticketStore} from '../index';
 import { userStore } from '../../users';
 import { getCurrentRouteId } from '../../../services/router';
 import { isAdmin } from '../../../services/auth';
-import { ref } from 'vue';
+import { ref,computed } from 'vue';
 import { Ticket } from '../types';
+import { User } from '../../users/types';
 
 ticketStore.actions.getAll()
 userStore.actions.getAll()
+const allUsers= userStore.getters.all
+console.log(allUsers.value)
+const admins=allUsers.value.filter((user:User) => user.is_admin === 1);
+console.log(admins)
 
 const ticket = ticketStore.getters.byId(getCurrentRouteId());
 
