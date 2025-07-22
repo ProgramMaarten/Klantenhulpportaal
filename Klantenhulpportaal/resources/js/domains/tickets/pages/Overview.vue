@@ -25,7 +25,8 @@
          <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ ticket.user_id }}</RouterLink></td>   
          <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ formatDate(ticket.created_at) }}</RouterLink></td>
          <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ formatDate(ticket.updated_at) }}</RouterLink></td>   
-         <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ ticket.admin_id }}</RouterLink></td> 
+         <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ ticket.admin_id }}</RouterLink></td>
+         <td v-if="isAdmin"><RouterLink :to="{name: 'tickets.edit', params: { id: ticket.id }}">Bewerken</RouterLink></td> 
     </tr>
     <tr v-if="!isAdmin"><td colspan="8">Mijn Tickets</td></tr>
     <tr v-if="isAdmin"><td colspan="8">Alle Tickets</td></tr>
@@ -37,7 +38,8 @@
          <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ ticket.user_id }}</RouterLink></td>   
          <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ formatDate(ticket.created_at) }}</RouterLink></td>
          <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ formatDate(ticket.updated_at) }}</RouterLink></td>   
-         <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ ticket.admin_id }}</RouterLink></td> 
+         <td><RouterLink :to="{name: 'tickets.show', params: { id: ticket.id }}">{{ ticket.admin_id }}</RouterLink></td>
+         <td v-if="isAdmin"><RouterLink :to="{name: 'tickets.edit', params: { id: ticket.id }}">Bewerken</RouterLink></td>
   </tr>
   </tbody> 
   </table>
